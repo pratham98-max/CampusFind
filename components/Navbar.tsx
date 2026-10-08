@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, PlusCircle, LayoutDashboard, ShieldCheck, Bell } from "lucide-react";
+import { Search, PlusCircle, LayoutDashboard, ShieldCheck, Bell, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -10,6 +10,7 @@ export default function Navbar() {
   const [pendingMatches, setPendingMatches] = useState<number>(0);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [latestMatchId, setLatestMatchId] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Poll or fetch pending matches for demonstration
@@ -138,16 +139,42 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Action CTA */}
-          <Link
-            href="/report"
-            className="flex items-center space-x-1.5 rounded-lg bg-[#0B1F4D] px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#132d69]"
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100"
+            aria-label="Toggle navigation menu"
           >
-            <PlusCircle className="h-4 w-4 text-[#F5C542]" />
-            <span className="hidden sm:inline">Report Item</span>
-          </Link>
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-2.5 rounded-lg px-3 py-2 text-sm font-medium ${
+                  isActive
+                    ? "bg-slate-100 text-[#0B1F4D] font-bold"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <Icon className={`h-4 w-4 ${isActive ? "text-[#0B1F4D]" : "text-slate-400"}`} />
+                <span>{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </header>
   );
 }

@@ -49,6 +49,7 @@ export default function TopBar({ onToggleMobileMenu }: TopBarProps) {
   const getPageTitle = () => {
     if (pathname === "/") return "Campus Item Directory";
     if (pathname.startsWith("/report")) return "Register Lost / Found Belonging";
+    if (pathname.startsWith("/profile")) return "Student Profile & Identity Card";
     if (pathname.startsWith("/admin/dashboard")) return "Operations & Resolution Command";
     if (pathname.startsWith("/admin/reports")) return "Student ID Verification Queue";
     if (pathname.startsWith("/item/")) return "Item Custody & Lifecycle Tracking";
@@ -145,6 +146,20 @@ export default function TopBar({ onToggleMobileMenu }: TopBarProps) {
           <PlusCircle className="h-3.5 w-3.5 text-[#F5C542]" />
           <span className="hidden sm:inline">Report Item</span>
         </Link>
+
+        {/* Profile Shortcut */}
+        {user && (
+          <Link
+            href="/profile"
+            className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:border-slate-300 transition"
+            title="Student Profile & ID Card"
+          >
+            <div className="flex h-5 w-5 items-center justify-center rounded bg-[#0B1F4D] text-[#F5C542] text-[10px] font-bold">
+              {user.full_name?.charAt(0) || "U"}
+            </div>
+            <span className="hidden md:inline max-w-[90px] truncate">{user.full_name?.split(" ")[0]}</span>
+          </Link>
+        )}
       </div>
     </header>
   );

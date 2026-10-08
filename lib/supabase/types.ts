@@ -20,6 +20,16 @@ export interface User {
   student_id?: string;
   role: UserRole;
   created_at: string;
+  // Institutional Student Profile Fields
+  prn?: string; // Permanent Registration Number
+  roll_no?: string;
+  department?: string;
+  academic_year?: string; // First Year (FE), Second Year (SE), Third Year (TE), Final Year (BE)
+  division?: string; // Div A, B, C...
+  phone?: string;
+  address?: string;
+  emergency_contact?: string;
+  blood_group?: string;
 }
 
 export interface LostItem {

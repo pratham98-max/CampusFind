@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       const derivedName = clean
         .split("@")[0]
         .replace(/[._]/g, " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase());
+        .replace(/\b\w/g, (c: string) => c.toUpperCase());
 
       user = dbStore.createUser({
         full_name: derivedName,

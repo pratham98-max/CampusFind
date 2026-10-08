@@ -116,11 +116,34 @@ export const dbStore = {
       email: userData.email,
       student_id: userData.student_id || userData.full_name.toUpperCase().replace(/\s+/g, ""),
       role: userData.role || "student",
+      prn: userData.prn,
+      roll_no: userData.roll_no,
+      department: userData.department,
+      academic_year: userData.academic_year,
+      division: userData.division,
+      phone: userData.phone,
+      address: userData.address,
+      emergency_contact: userData.emergency_contact,
+      blood_group: userData.blood_group,
       created_at: new Date().toISOString(),
     };
     db.users.push(newUser);
     writeDatabase(db);
     return newUser;
+  },
+
+  updateUserProfile(userId: string, data: Partial<User>): User | null {
+    const db = readDatabase();
+    const userIndex = db.users.findIndex((u) => u.id === userId);
+    if (userIndex === -1) return null;
+
+    db.users[userIndex] = {
+      ...db.users[userIndex],
+      ...data,
+      id: userId, // immutable id
+    };
+    writeDatabase(db);
+    return db.users[userIndex];
   },
 
   // Items query with filters

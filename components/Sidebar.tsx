@@ -13,6 +13,7 @@ import {
   PhoneCall,
   Clock,
   User,
+  GraduationCap,
   ExternalLink,
   ChevronRight,
   Shield,
@@ -81,6 +82,11 @@ export default function Sidebar({ onCloseMobile }: SidebarProps) {
           href: "/report",
           icon: PlusCircle,
           accent: true,
+        },
+        {
+          name: "Student Profile",
+          href: "/profile",
+          icon: GraduationCap,
         },
       ],
     },
@@ -235,12 +241,17 @@ export default function Sidebar({ onCloseMobile }: SidebarProps) {
       {user && (
         <div className="border-t border-slate-200 p-3 bg-slate-50/60">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2.5 truncate">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0B1F4D] text-[#F5C542] text-xs font-bold shadow-sm">
+            <Link
+              href="/profile"
+              onClick={onCloseMobile}
+              className="flex items-center space-x-2.5 truncate group hover:opacity-85 transition"
+              title="View & Edit Student Profile"
+            >
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0B1F4D] text-[#F5C542] text-xs font-bold shadow-sm group-hover:scale-105 transition-transform">
                 {user.full_name.charAt(0)}
               </div>
               <div className="truncate">
-                <span className="block text-xs font-bold text-slate-900 truncate">
+                <span className="block text-xs font-bold text-slate-900 truncate group-hover:text-[#0B1F4D]">
                   {user.full_name}
                 </span>
                 <div className="flex items-center space-x-1">
@@ -254,7 +265,7 @@ export default function Sidebar({ onCloseMobile }: SidebarProps) {
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
 
             <button
               type="button"

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dbStore } from "@/lib/data/store";
+import { runMatchingEngine } from "@/lib/matching/scoring";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,9 +25,23 @@ export async function POST(request: NextRequest) {
       photo_url: photo_url || "",
     });
 
-    return NextResponse.json({ success: true, item: newItem }, { status: 201 });
+    // Execute matching engine pipeline
+    const matches = await runMatchingEngine(newItem);
+
+    return NextResponse.json(
+      {
+        success: true,
+        item: newItem,
+        matches,
+        message:
+          matches.length > 0
+            ? `AI Matching Engine identified ${matches.length} candidate match(es)!`
+            : "Found item registered. No candidate reports matched threshold.",
+      },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("[API /items/found] Error creating found item:", error);
+    console.error("[API /items/found] Error creating found item or running matching engine:", error);
     return NextResponse.json(
       { error: "Internal server error occurred while registering found report." },
       { status: 500 }

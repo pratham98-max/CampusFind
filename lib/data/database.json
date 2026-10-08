@@ -1,0 +1,339 @@
+{
+  "organizations": [
+    {
+      "id": "org-vit-pune",
+      "name": "Vishwakarma Institute of Technology",
+      "type": "college",
+      "categories": [
+        "Electronics",
+        "Wallets & Bags",
+        "Identification",
+        "Books & Notebooks",
+        "Bottles & Tumblers",
+        "Keys",
+        "Clothing & Accessories",
+        "Other"
+      ],
+      "created_at": "2026-08-01T08:00:00Z"
+    },
+    {
+      "id": "org-st-jude",
+      "name": "St. Jude Memorial Hospital",
+      "type": "hospital",
+      "categories": [
+        "Medical Equipment",
+        "Electronics",
+        "Identification",
+        "Wallets & Bags",
+        "Clothing & Accessories",
+        "Other"
+      ],
+      "created_at": "2026-08-15T09:00:00Z"
+    },
+    {
+      "id": "org-metro-prep",
+      "name": "Metro Preparatory Academy",
+      "type": "school",
+      "categories": [
+        "Books & Notebooks",
+        "Bottles & Tumblers",
+        "Clothing & Accessories",
+        "Electronics",
+        "Sports Gear",
+        "Other"
+      ],
+      "created_at": "2026-09-01T08:00:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr-aarav-sharma",
+      "org_id": "org-vit-pune",
+      "full_name": "Aarav Sharma",
+      "email": "aarav.sharma@vit.edu",
+      "student_id": "2024BCSE042",
+      "role": "student",
+      "created_at": "2026-09-05T10:00:00Z"
+    },
+    {
+      "id": "usr-riya-patel",
+      "org_id": "org-vit-pune",
+      "full_name": "Riya Patel",
+      "email": "riya.patel@vit.edu",
+      "student_id": "2023BIT088",
+      "role": "student",
+      "created_at": "2026-09-06T11:00:00Z"
+    },
+    {
+      "id": "usr-security-desk",
+      "org_id": "org-vit-pune",
+      "full_name": "Kailash Jadhav (Main Security)",
+      "email": "security.desk@vit.edu",
+      "student_id": "SEC-402",
+      "role": "security",
+      "created_at": "2026-08-10T08:00:00Z"
+    },
+    {
+      "id": "usr-admin-deshmukh",
+      "org_id": "org-vit-pune",
+      "full_name": "Dr. Sunita Deshmukh",
+      "email": "admin.lostfound@vit.edu",
+      "student_id": "FAC-1002",
+      "role": "admin",
+      "created_at": "2026-08-01T08:00:00Z"
+    }
+  ],
+  "lost_items": [
+    {
+      "id": "lost-hydro-flask-01",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-aarav-sharma",
+      "title": "Stainless Steel Hydro Flask (32oz)",
+      "description": "Matte metallic grey insulated hydro flask vacuum bottle with black flex cap and slight scratch on bottom rim.",
+      "category": "Bottles & Tumblers",
+      "date_lost": "2026-10-06",
+      "location": "Main Library - 2nd Floor Reading Room",
+      "photo_url": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80",
+      "status": "reported",
+      "created_at": "2026-10-06T14:30:00Z"
+    },
+    {
+      "id": "lost-airpods-02",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-riya-patel",
+      "title": "Apple AirPods Pro (2nd Gen)",
+      "description": "White charging case enclosed in a rugged matte black Spigen silicon case with mini lanyard loop.",
+      "category": "Electronics",
+      "date_lost": "2026-10-05",
+      "location": "Computer Engineering Lab 402",
+      "photo_url": "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80",
+      "status": "reported",
+      "created_at": "2026-10-05T16:15:00Z"
+    },
+    {
+      "id": "lost-wallet-03",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-aarav-sharma",
+      "title": "Brown Leather Bifold Wallet",
+      "description": "Dark tan WildHorn bifold leather wallet with institutional library card and blue metro transit pass inside.",
+      "category": "Wallets & Bags",
+      "date_lost": "2026-10-03",
+      "location": "Cafeteria Outdoor Seating Area",
+      "photo_url": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+      "status": "matched",
+      "created_at": "2026-10-03T12:00:00Z"
+    },
+    {
+      "id": "lost-casio-calc-04",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-riya-patel",
+      "title": "Casio fx-991CW Scientific Calculator",
+      "description": "Black and silver high-resolution ClassWiz scientific calculator with student roll number sticker on back slide cover.",
+      "category": "Electronics",
+      "date_lost": "2026-10-01",
+      "location": "Auditorium Hall - Mathematics Exam Room",
+      "photo_url": "https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=600&q=80",
+      "status": "returned",
+      "created_at": "2026-10-01T17:40:00Z"
+    },
+    {
+      "id": "lost-keys-05",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-aarav-sharma",
+      "title": "Bike Keys with Red Honda Keychain",
+      "description": "Two silver ignition keys attached to a red rubber Honda winged logo key fob.",
+      "category": "Keys",
+      "date_lost": "2026-10-07",
+      "location": "North Campus Two-Wheeler Parking",
+      "photo_url": "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80",
+      "status": "reported",
+      "created_at": "2026-10-07T09:20:00Z"
+    }
+  ],
+  "found_items": [
+    {
+      "id": "found-wallet-01",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-security-desk",
+      "title": "Dark Brown Leather Wallet",
+      "description": "Men's leather wallet recovered near central cafeteria benches. Contains transit pass and library card.",
+      "category": "Wallets & Bags",
+      "date_found": "2026-10-03",
+      "location": "Central Cafeteria Benches",
+      "photo_url": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+      "status": "matched",
+      "created_at": "2026-10-03T15:00:00Z"
+    },
+    {
+      "id": "found-casio-calc-02",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-security-desk",
+      "title": "Casio Scientific Calculator",
+      "description": "Casio fx-991CW found on front row bench of auditorium after exam session.",
+      "category": "Electronics",
+      "date_found": "2026-10-01",
+      "location": "Main Auditorium Desk 12",
+      "photo_url": "https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=600&q=80",
+      "status": "returned",
+      "created_at": "2026-10-01T18:30:00Z"
+    },
+    {
+      "id": "found-umbrella-03",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-security-desk",
+      "title": "Compact Navy Blue Umbrella",
+      "description": "Automatic folding umbrella with wooden handle left in the foyer rack.",
+      "category": "Clothing & Accessories",
+      "date_found": "2026-10-04",
+      "location": "Mechanical Building Foyer",
+      "photo_url": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?auto=format&fit=crop&w=600&q=80",
+      "status": "reported",
+      "created_at": "2026-10-04T11:00:00Z"
+    },
+    {
+      "id": "found-id-card-04",
+      "org_id": "org-vit-pune",
+      "reporter_id": "usr-security-desk",
+      "title": "Student Identity Card (Computer Dept)",
+      "description": "Smart RFID card on blue neck lanyard belonging to 3rd year student.",
+      "category": "Identification",
+      "date_found": "2026-10-07",
+      "location": "Student Xerox Counter",
+      "photo_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80",
+      "status": "reported",
+      "created_at": "2026-10-07T13:45:00Z"
+    }
+  ],
+  "matches": [
+    {
+      "id": "match-wallet-01",
+      "lost_item_id": "lost-wallet-03",
+      "found_item_id": "found-wallet-01",
+      "confidence_score": 0.89,
+      "category_match": true,
+      "keyword_score": 0.85,
+      "date_score": 1,
+      "embedding_score": 0.87,
+      "status": "confirmed",
+      "created_at": "2026-10-03T15:05:00Z",
+      "confirmed_at": "2026-10-03T16:20:00Z"
+    },
+    {
+      "id": "match-calc-02",
+      "lost_item_id": "lost-casio-calc-04",
+      "found_item_id": "found-casio-calc-02",
+      "confidence_score": 0.94,
+      "category_match": true,
+      "keyword_score": 0.92,
+      "date_score": 1,
+      "embedding_score": 0.91,
+      "status": "confirmed",
+      "created_at": "2026-10-01T18:35:00Z",
+      "confirmed_at": "2026-10-01T19:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-calc-01",
+      "match_id": "match-calc-02",
+      "claimant_id": "usr-riya-patel",
+      "student_id_input": "2023BIT088",
+      "verified": true,
+      "verified_by": "usr-admin-deshmukh",
+      "verified_at": "2026-10-02T10:15:00Z",
+      "created_at": "2026-10-01T19:10:00Z"
+    },
+    {
+      "id": "claim-wallet-02",
+      "match_id": "match-wallet-01",
+      "claimant_id": "usr-aarav-sharma",
+      "student_id_input": "2024BCSE042",
+      "verified": false,
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-03T16:30:00Z"
+    }
+  ],
+  "status_events": [
+    {
+      "id": "evt-lost-hydro-1",
+      "item_type": "lost",
+      "item_id": "lost-hydro-flask-01",
+      "from_status": "none",
+      "to_status": "reported",
+      "actor_id": "usr-aarav-sharma",
+      "note": "Reported lost by Aarav Sharma (2024BCSE042) via Student Portal.",
+      "created_at": "2026-10-06T14:30:00Z"
+    },
+    {
+      "id": "evt-lost-airpods-1",
+      "item_type": "lost",
+      "item_id": "lost-airpods-02",
+      "from_status": "none",
+      "to_status": "reported",
+      "actor_id": "usr-riya-patel",
+      "note": "Reported lost by Riya Patel (2023BIT088) via Student Portal.",
+      "created_at": "2026-10-05T16:15:00Z"
+    },
+    {
+      "id": "evt-wallet-1",
+      "item_type": "lost",
+      "item_id": "lost-wallet-03",
+      "from_status": "none",
+      "to_status": "reported",
+      "actor_id": "usr-aarav-sharma",
+      "note": "Initial lost item report submitted.",
+      "created_at": "2026-10-03T12:00:00Z"
+    },
+    {
+      "id": "evt-wallet-2",
+      "item_type": "lost",
+      "item_id": "lost-wallet-03",
+      "from_status": "reported",
+      "to_status": "matched",
+      "actor_id": "usr-aarav-sharma",
+      "note": "AI matching engine detected candidate match #match-wallet-01 (89% confidence). Verified by owner.",
+      "created_at": "2026-10-03T16:20:00Z"
+    },
+    {
+      "id": "evt-calc-1",
+      "item_type": "lost",
+      "item_id": "lost-casio-calc-04",
+      "from_status": "none",
+      "to_status": "reported",
+      "actor_id": "usr-riya-patel",
+      "note": "Item reported lost in Auditorium Hall.",
+      "created_at": "2026-10-01T17:40:00Z"
+    },
+    {
+      "id": "evt-calc-2",
+      "item_type": "lost",
+      "item_id": "lost-casio-calc-04",
+      "from_status": "reported",
+      "to_status": "matched",
+      "actor_id": "usr-riya-patel",
+      "note": "Candidate match confirmed with found report #found-casio-calc-02.",
+      "created_at": "2026-10-01T19:00:00Z"
+    },
+    {
+      "id": "evt-calc-3",
+      "item_type": "lost",
+      "item_id": "lost-casio-calc-04",
+      "from_status": "matched",
+      "to_status": "returned",
+      "actor_id": "usr-admin-deshmukh",
+      "note": "Student ID 2023BIT088 physically verified at Security Office by Dr. Sunita Deshmukh. Item returned.",
+      "created_at": "2026-10-02T10:15:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-01",
+      "user_id": "usr-aarav-sharma",
+      "match_id": "match-wallet-01",
+      "channel": "email",
+      "sent_at": "2026-10-03T15:06:00Z",
+      "opened_at": "2026-10-03T16:18:00Z"
+    }
+  ]
+}

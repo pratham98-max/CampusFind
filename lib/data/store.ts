@@ -107,6 +107,22 @@ export const dbStore = {
     );
   },
 
+  createUser(userData: Partial<User> & { full_name: string; email: string }): User {
+    const db = readDatabase();
+    const newUser: User = {
+      id: userData.id || `usr-${Date.now()}`,
+      org_id: userData.org_id || "org-vit-pune",
+      full_name: userData.full_name,
+      email: userData.email,
+      student_id: userData.student_id || userData.full_name.toUpperCase().replace(/\s+/g, ""),
+      role: userData.role || "student",
+      created_at: new Date().toISOString(),
+    };
+    db.users.push(newUser);
+    writeDatabase(db);
+    return newUser;
+  },
+
   // Items query with filters
   getAllItems(filters?: {
     category?: string;

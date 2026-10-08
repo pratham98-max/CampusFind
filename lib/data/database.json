@@ -81,6 +81,15 @@
       "student_id": "FAC-1002",
       "role": "admin",
       "created_at": "2026-08-01T08:00:00Z"
+    },
+    {
+      "id": "usr-1791483424516",
+      "org_id": "org-vit-pune",
+      "full_name": "Pratham Shelke24",
+      "email": "pratham.shelke24@vit.edu",
+      "student_id": "PRATHAM.SHELKE24",
+      "role": "student",
+      "created_at": "2026-10-08T18:17:04.516Z"
     }
   ],
   "lost_items": [

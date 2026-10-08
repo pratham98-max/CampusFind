@@ -30,6 +30,11 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!user) {
+      setPendingMatches(0);
+      return;
+    }
+
     // Poll pending matches for live updates
     async function checkPending() {
       try {
@@ -48,7 +53,7 @@ export default function Navbar() {
     checkPending();
     const interval = setInterval(checkPending, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [user]);
 
   const navItems = [
     { name: "Browse Items", href: "/", icon: Search },
@@ -60,7 +65,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     await logout();
     setUserMenuOpen(false);
-    router.push("/");
+    window.location.href = "/login";
   };
 
   return (

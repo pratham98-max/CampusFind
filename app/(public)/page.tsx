@@ -100,8 +100,8 @@ export default function BrowsePage() {
                 Vishwakarma Institute of Technology (VIT)
               </span>
               <span className="text-xs text-slate-400">&bull;</span>
-              <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                Public Catalog — No Login Required
+              <span className="text-xs font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+                Verified Student &amp; Staff Access
               </span>
             </div>
             <h1 className="mt-2 text-2xl font-bold tracking-tight text-[#0B1F4D] sm:text-3xl">

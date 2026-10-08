@@ -37,7 +37,7 @@ function LoginForm() {
 
     try {
       await login(identifier.trim(), password);
-      router.push(redirectUrl);
+      window.location.href = redirectUrl || "/";
     } catch (err: any) {
       setError(err.message || "Invalid credentials. Please verify your Student ID or institutional email.");
     } finally {
@@ -111,6 +111,17 @@ function LoginForm() {
             </div>
           </div>
 
+          {/* Institutional Hint Box */}
+          <div className="rounded-lg bg-slate-50 border border-slate-200 p-2.5 text-[11px] text-slate-600">
+            <span className="font-semibold text-slate-800">Campus Demo Logins:</span>
+            <div className="mt-1 flex flex-wrap gap-1.5 font-mono text-[10px]">
+              <span className="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-700">2024BCSE042</span>
+              <span className="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-700">PRATHAM</span>
+              <span className="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-700">admin</span>
+              <span className="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-700">security</span>
+            </div>
+          </div>
+
           <button
             type="submit"
             disabled={isLoading}
@@ -131,12 +142,9 @@ function LoginForm() {
         </form>
 
         <div className="mt-6 border-t border-slate-100 pt-4 text-center">
-          <Link
-            href="/"
-            className="text-xs font-medium text-slate-500 hover:text-slate-800 transition underline"
-          >
-            Continue browsing as Guest (No login required) &rarr;
-          </Link>
+          <p className="text-xs font-medium text-slate-500">
+            Official Institutional Credential Required &bull; Unauthenticated access is restricted.
+          </p>
         </div>
       </div>
 

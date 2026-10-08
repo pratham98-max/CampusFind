@@ -16,6 +16,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { useAuth } from "@/lib/auth/context";
+
 interface ItemFormProps {
   initialType?: "lost" | "found";
 }
@@ -35,6 +37,7 @@ const CATEGORIES = [
 export default function ItemForm({ initialType = "lost" }: ItemFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useAuth();
   const defaultTab = (searchParams.get("type") as "lost" | "found") || initialType;
 
   const [itemType, setItemType] = useState<"lost" | "found">(defaultTab);
@@ -121,8 +124,8 @@ export default function ItemForm({ initialType = "lost" }: ItemFormProps) {
         [itemType === "lost" ? "date_lost" : "date_found"]: date,
         location: location.trim() || (itemType === "lost" ? "Campus Grounds" : "Security Front Desk"),
         photo_url: photoUrl,
-        org_id: "org-vit-pune",
-        reporter_id: itemType === "lost" ? "usr-aarav-sharma" : "usr-security-desk",
+        org_id: user?.org_id || "org-vit-pune",
+        reporter_id: user?.id || (itemType === "lost" ? "usr-aarav-sharma" : "usr-security-desk"),
       };
 
       const res = await fetch(endpoint, {

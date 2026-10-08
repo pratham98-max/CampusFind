@@ -1,36 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Search, PlusCircle, LayoutDashboard, ShieldCheck, Bell, Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Search,
+  PlusCircle,
+  LayoutDashboard,
+  ShieldCheck,
+  Bell,
+  Menu,
+  X,
+  LogIn,
+  LogOut,
+  User,
+  GraduationCap,
+} from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/lib/auth/context";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
+
   const [pendingMatches, setPendingMatches] = useState<number>(0);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [latestMatchId, setLatestMatchId] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Poll or fetch pending matches for demonstration
+    // Poll pending matches for live updates
     async function checkPending() {
       try {
-        const res = await fetch("/api/items?status=matched");
-        if (res.ok) {
-          const data = await res.json();
-          // Also check for pending matches
-          const matchRes = await fetch("/api/matches/pending");
-          if (matchRes.ok) {
-            const matches = await matchRes.json();
-            setPendingMatches(matches.length || 0);
-            if (matches.length > 0) {
-              setLatestMatchId(matches[0].id);
-            }
+        const matchRes = await fetch("/api/matches/pending");
+        if (matchRes.ok) {
+          const matches = await matchRes.json();
+          setPendingMatches(matches.length || 0);
+          if (matches.length > 0) {
+            setLatestMatchId(matches[0].id);
           }
         }
       } catch (e) {
-        // Fallback silently if offline or initial setup
+        // Safe fallback
       }
     }
     checkPending();
@@ -44,6 +56,12 @@ export default function Navbar() {
     { name: "Admin Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
     { name: "Verification Queue", href: "/admin/reports", icon: ShieldCheck },
   ];
+
+  const handleLogout = async () => {
+    await logout();
+    setUserMenuOpen(false);
+    router.push("/");
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm">
@@ -88,7 +106,7 @@ export default function Navbar() {
 
         <div className="flex items-center space-x-3">
           {/* Institution Selector */}
-          <div className="hidden lg:flex items-center space-x-2 text-xs bg-slate-100 border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700">
+          <div className="hidden xl:flex items-center space-x-2 text-xs bg-slate-100 border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             <span className="font-semibold text-slate-900">Vishwakarma Institute (VIT)</span>
           </div>
@@ -139,6 +157,81 @@ export default function Navbar() {
             )}
           </div>
 
+          {/* User Auth Section */}
+          {user ? (
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-800 hover:bg-slate-50 transition shadow-sm"
+              >
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0B1F4D] text-[#F5C542] text-[11px] font-bold">
+                  {user.full_name.charAt(0)}
+                </div>
+                <div className="hidden sm:block text-left">
+                  <span className="block font-semibold text-slate-900 leading-tight">
+                    {user.full_name}
+                  </span>
+                  <span className="block text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
+                    {user.role}
+                  </span>
+                </div>
+              </button>
+
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-56 rounded-lg border border-slate-200 bg-white p-2 shadow-lg z-50">
+                  <div className="px-3 py-2 border-b border-slate-100">
+                    <p className="text-xs font-bold text-[#0B1F4D]">{user.full_name}</p>
+                    <p className="text-[11px] text-slate-500 truncate">{user.email}</p>
+                    {user.student_id && (
+                      <p className="mt-1 text-[10px] font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded inline-block">
+                        ID: {user.student_id}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="py-1">
+                    {(user.role === "admin" || user.role === "security") && (
+                      <Link
+                        href="/admin/dashboard"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center space-x-2 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50 rounded"
+                      >
+                        <LayoutDashboard className="h-3.5 w-3.5 text-slate-400" />
+                        <span>Admin Dashboard</span>
+                      </Link>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="w-full flex items-center space-x-2 px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded text-left"
+                    >
+                      <LogOut className="h-3.5 w-3.5" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="inline-flex items-center space-x-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition"
+            >
+              <LogIn className="h-3.5 w-3.5 text-[#0B1F4D]" />
+              <span>Log In</span>
+            </Link>
+          )}
+
+          {/* Action CTA */}
+          <Link
+            href="/report"
+            className="hidden sm:flex items-center space-x-1.5 rounded-lg bg-[#0B1F4D] px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#132d69]"
+          >
+            <PlusCircle className="h-4 w-4 text-[#F5C542]" />
+            <span>Report Item</span>
+          </Link>
+
           {/* Mobile Menu Toggle */}
           <button
             type="button"
@@ -173,6 +266,32 @@ export default function Navbar() {
               </Link>
             );
           })}
+
+          <div className="pt-2 border-t border-slate-100">
+            {user ? (
+              <div className="flex items-center justify-between py-2 text-xs">
+                <div>
+                  <p className="font-bold text-slate-900">{user.full_name}</p>
+                  <p className="text-slate-500">{user.student_id || user.email}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="text-rose-600 font-semibold"
+                >
+                  Log Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-center rounded-lg bg-[#0B1F4D] py-2 text-xs font-semibold text-white"
+              >
+                Log In to Campus Portal
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </header>

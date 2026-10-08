@@ -120,7 +120,7 @@
       "date_lost": "2026-10-03",
       "location": "Cafeteria Outdoor Seating Area",
       "photo_url": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
-      "status": "matched",
+      "status": "returned",
       "created_at": "2026-10-03T12:00:00Z"
     },
     {
@@ -161,7 +161,7 @@
       "date_found": "2026-10-03",
       "location": "Central Cafeteria Benches",
       "photo_url": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
-      "status": "matched",
+      "status": "returned",
       "created_at": "2026-10-03T15:00:00Z"
     },
     {
@@ -248,9 +248,9 @@
       "match_id": "match-wallet-01",
       "claimant_id": "usr-aarav-sharma",
       "student_id_input": "2024BCSE042",
-      "verified": false,
-      "verified_by": null,
-      "verified_at": null,
+      "verified": true,
+      "verified_by": "usr-admin-deshmukh",
+      "verified_at": "2026-10-08T17:54:50.944Z",
       "created_at": "2026-10-03T16:30:00Z"
     }
   ],
@@ -324,6 +324,26 @@
       "actor_id": "usr-admin-deshmukh",
       "note": "Student ID 2023BIT088 physically verified at Security Office by Dr. Sunita Deshmukh. Item returned.",
       "created_at": "2026-10-02T10:15:00Z"
+    },
+    {
+      "id": "evt-1791482090944-ret-lost",
+      "item_type": "lost",
+      "item_id": "lost-wallet-03",
+      "from_status": "matched",
+      "to_status": "returned",
+      "actor_id": "usr-admin-deshmukh",
+      "note": "Student ID 2024BCSE042 verified by Security / Admin. Item hand-over completed: Returned.",
+      "created_at": "2026-10-08T17:54:50.944Z"
+    },
+    {
+      "id": "evt-1791482090944-ret-found",
+      "item_type": "found",
+      "item_id": "found-wallet-01",
+      "from_status": "matched",
+      "to_status": "returned",
+      "actor_id": "usr-admin-deshmukh",
+      "note": "Item claimed and returned to verified student 2024BCSE042.",
+      "created_at": "2026-10-08T17:54:50.944Z"
     }
   ],
   "notifications": [

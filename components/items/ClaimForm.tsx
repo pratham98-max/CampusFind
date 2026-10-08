@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 
+import { useAuth } from "@/lib/auth/context";
+
 interface ClaimFormProps {
   matchId: string;
   itemId: string;
@@ -28,7 +30,8 @@ export default function ClaimForm({
   existingClaim,
   onClaimUpdated,
 }: ClaimFormProps) {
-  const [studentId, setStudentId] = useState("");
+  const { user } = useAuth();
+  const [studentId, setStudentId] = useState(user?.student_id || "");
   const [claim, setClaim] = useState<any | null>(existingClaim || null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
